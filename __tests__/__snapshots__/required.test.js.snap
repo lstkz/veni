@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`required should return a custom message 1`] = `
+Object {
+  "error": Object {
+    "error": "custom message",
+    "path": "value",
+  },
+  "stop": true,
+}
+`;
+
+exports[`required should return an error for: null 1`] = `
+Object {
+  "error": Object {
+    "error": "is required",
+    "path": "value",
+  },
+  "stop": true,
+}
+`;
+
+exports[`required should return an error for: undefined 1`] = `
+Object {
+  "error": Object {
+    "error": "is required",
+    "path": "value",
+  },
+  "stop": true,
+}
+`;
