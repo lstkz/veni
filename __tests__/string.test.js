@@ -13,7 +13,11 @@ describe('string', () => {
     });
   });
 
-//  it('should return a custom message', () => {
-//    expect(required('custom message')({data: null})).toMatchSnapshot();
-//  });
+  it('should return a custom message', () => {
+    expect(string('custom message')({value: 12})).toMatchSnapshot();
+  });
+
+  it('should return a value for a valid string', () => {
+    expect(string()({value: 'abc'})).toMatchSnapshot();
+  });
 });

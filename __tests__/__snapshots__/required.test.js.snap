@@ -1,31 +1,68 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`required should return a custom message 1`] = `
+exports[`keys should not return an error for unknown properties if allowUnknown = true 1`] = `
 Object {
-  "error": Object {
-    "error": "custom message",
-    "path": "value",
+  "errors": Array [],
+  "value": Object {
+    "ab": 10,
+    "foo": "123",
   },
-  "stop": true,
 }
 `;
 
-exports[`required should return an error for: null 1`] = `
+exports[`keys should return an error 1`] = `
 Object {
-  "error": Object {
-    "error": "is required",
-    "path": "value",
+  "errors": Array [
+    Object {
+      "error": "must be a string",
+      "path": "foo",
+    },
+  ],
+  "value": Object {
+    "foo": 123,
   },
-  "stop": true,
 }
 `;
 
-exports[`required should return an error for: undefined 1`] = `
+exports[`keys should return an error for unknown properties 1`] = `
 Object {
-  "error": Object {
-    "error": "is required",
-    "path": "value",
+  "errors": Array [
+    Object {
+      "error": "unknown property: ab",
+      "path": "value",
+    },
+  ],
+  "value": Object {
+    "ab": 10,
+    "foo": "123",
   },
-  "stop": true,
+}
+`;
+
+exports[`keys should return two errors 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "error": "must be a string",
+      "path": "foo",
+    },
+    Object {
+      "error": "must be a string",
+      "path": "bar",
+    },
+  ],
+  "value": Object {
+    "bar": 456,
+    "foo": 123,
+  },
+}
+`;
+
+exports[`keys should strip unknown properties if stripUnknown = true 1`] = `
+Object {
+  "errors": Array [],
+  "value": Object {
+    "foo": "123",
+  },
 }
 `;

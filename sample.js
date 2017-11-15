@@ -150,16 +150,16 @@ const V = {
         continue;
       }
       if (fnRet.error) {
-        ret.errors.push(fnRet.error)
+        ret.errors.push(fnRet.error);
       }
       if (fnRet.errors) {
-        ret.errors = ret.errors.concat(fnRet.errors)
-      }
-      if (fnRet.stop) {
-        break;
+        ret.errors = ret.errors.concat(fnRet.errors);
       }
       if (fnRet.hasOwnProperty('value')) {
         ret.value = fnRet.value;
+      }
+      if (fnRet.stop) {
+        break;
       }
     }
     return ret;
@@ -189,7 +189,7 @@ const schema = V.schema(
   V.object(),
   V.keys({
     username: [V.required(), V.string(), V.regex(/^[a-zA-Z0-9]+$/), V.min(3), V.max(30)],
-    birthyear: [V.number(), V.min(1900), V.max(2013)],
+    birthyear: [V.optional(), V.number(), V.min(1900), V.max(2013)],
 //    role: [V.enum('user', 'manager')],
   }),
 );

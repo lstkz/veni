@@ -8,6 +8,9 @@
     "no-undefined": 0,
     "arrow-parens": 0,
     "lodash/prefer-lodash-typecheck": 0,
-    "no-magic-numbers": 0
+    "no-magic-numbers": 0,
+    "no-restricted-syntax": 0,
+    "no-continue": 0,
+    "guard-for-in": 0,
   }
 }

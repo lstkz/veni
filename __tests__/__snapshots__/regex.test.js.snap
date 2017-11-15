@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`regex should return a custom message 1`] = `
+Object {
+  "error": Object {
+    "error": "custom message",
+    "path": "value",
+  },
+}
+`;
+
+exports[`regex should return an error 1`] = `
+Object {
+  "error": Object {
+    "error": "must match a regex /\\\\w+/",
+    "path": "value",
+  },
+}
+`;

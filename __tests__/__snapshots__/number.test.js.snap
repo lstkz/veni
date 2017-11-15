@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`number should cast a string number 1`] = `
+Object {
+  "errors": Array [],
+  "value": 123,
+}
+`;
+
+exports[`number should ignore optional: null 1`] = `
+Object {
+  "errors": Array [],
+  "value": null,
+}
+`;
+
+exports[`number should ignore optional: undefined 1`] = `
+Object {
+  "errors": Array [],
+  "value": undefined,
+}
+`;
+
+exports[`number should return a custom message 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "error": "custom message",
+      "path": "value",
+    },
+  ],
+  "value": "abc",
+}
+`;
+
+exports[`number should return a value for a number string 1`] = `
+Object {
+  "errors": Array [],
+  "value": 123,
+}
+`;
+
+exports[`number should return an error for: [object Object] 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "error": "must be a number",
+      "path": "value",
+    },
+  ],
+  "value": Object {},
+}
+`;
+
+exports[`number should return an error for: 1,2,3 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "error": "must be a number",
+      "path": "value",
+    },
+  ],
+  "value": Array [
+    1,
+    2,
+    3,
+  ],
+}
+`;
+
+exports[`number should return an error for: abc 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "error": "must be a number",
+      "path": "value",
+    },
+  ],
+  "value": "abc",
+}
+`;

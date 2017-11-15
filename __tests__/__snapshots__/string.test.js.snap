@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`string should ignore optional: null 1`] = `
+Object {
+  "errors": Array [],
+  "value": null,
+}
+`;
+
+exports[`string should ignore optional: undefined 1`] = `
+Object {
+  "errors": Array [],
+  "value": undefined,
+}
+`;
+
+exports[`string should return a custom message 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "error": "custom message",
+      "path": "value",
+    },
+  ],
+  "value": 12,
+}
+`;
+
+exports[`string should return a value for a valid string 1`] = `
+Object {
+  "errors": Array [],
+  "value": "abc",
+}
+`;
+
+exports[`string should return an error for: [object Object] 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "error": "must be a string",
+      "path": "value",
+    },
+  ],
+  "value": Object {},
+}
+`;
+
+exports[`string should return an error for: 1 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "error": "must be a string",
+      "path": "value",
+    },
+  ],
+  "value": 1,
+}
+`;
+
+exports[`string should return an error for: 1,2,3 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "error": "must be a string",
+      "path": "value",
+    },
+  ],
+  "value": Array [
+    1,
+    2,
+    3,
+  ],
+}
+`;
