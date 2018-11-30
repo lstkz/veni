@@ -61,9 +61,7 @@ export class ObjectSchema<
             return;
           }
           const result = getValidateResult(propValue, propSchema, propPath);
-          if (result.errors) {
-            errors.push(...result.errors);
-          }
+          errors.push(...result.errors);
           if (result.value !== propValue) {
             if (!isNewValueCloned) {
               isNewValueCloned = true;
@@ -90,11 +88,15 @@ export class ObjectSchema<
 
   keys<K extends SchemaMap>(schema: K) {
     this._keys = schema;
-    return (this as any) as ObjectSchema<TReq, typeof schema>;
+    return (this as any) as ObjectSchema<TReq, TNull, typeof schema>;
   }
 
   unknown() {
     this._allowUnknown = true;
-    return (this as any) as ObjectSchema<TReq, TKeys & { [key: string]: any }>;
+    return (this as any) as ObjectSchema<
+      TReq,
+      TNull,
+      TKeys & { [key: string]: any }
+    >;
   }
 }

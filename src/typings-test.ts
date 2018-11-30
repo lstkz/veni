@@ -1,5 +1,5 @@
-import { V } from './src';
-import { Convert } from './src/convert-types';
+import { V } from './index';
+import { Convert } from './convert-types';
 
 enum Gender {
   Male = 'male',
@@ -14,8 +14,8 @@ const schema = V.object().keys({
   gender2: V.enum().literal('a', 'b', 'c'),
 });
 
-
 type SchemaType = Convert<typeof schema>;
 const obj: SchemaType = null as any;
 
 obj.gender = Gender.Female;
+obj.gender2 = 'a';

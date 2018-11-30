@@ -1,8 +1,9 @@
-import { V, getValidateResult } from '../src';
+import { V, getValidateResult } from '../src/index';
 
-it('should return an error if invalid string', () => {
-  const schema = V.object();
-  expect(getValidateResult(1, schema)).toMatchInlineSnapshot(`
+describe('base', () => {
+  it('should return an error if invalid string', () => {
+    const schema = V.object();
+    expect(getValidateResult(1, schema)).toMatchInlineSnapshot(`
 Object {
   "errors": Array [
     Object {
@@ -15,7 +16,7 @@ Object {
   "value": 1,
 }
 `);
-  expect(getValidateResult([], schema)).toMatchInlineSnapshot(`
+    expect(getValidateResult([], schema)).toMatchInlineSnapshot(`
 Object {
   "errors": Array [
     Object {
@@ -28,28 +29,28 @@ Object {
   "value": Array [],
 }
 `);
-});
+  });
 
-it('should return no errors if valid object', () => {
-  const schema = V.object();
-  expect(getValidateResult({}, schema)).toMatchInlineSnapshot(`
+  it('should return no errors if valid object', () => {
+    const schema = V.object();
+    expect(getValidateResult({}, schema)).toMatchInlineSnapshot(`
 Object {
   "errors": Array [],
   "value": Object {},
 }
 `);
-});
+  });
 
-it('should return an error if key is not allowed', () => {
-  const schema = V.object();
-  expect(
-    getValidateResult(
-      {
-        foo: 1,
-      },
-      schema
-    )
-  ).toMatchInlineSnapshot(`
+  it('should return an error if key is not allowed', () => {
+    const schema = V.object();
+    expect(
+      getValidateResult(
+        {
+          foo: 1,
+        },
+        schema
+      )
+    ).toMatchInlineSnapshot(`
 Object {
   "errors": Array [
     Object {
@@ -66,20 +67,22 @@ Object {
   },
 }
 `);
+  });
 });
 
-it('should return an error if key validation failed', () => {
-  const schema = V.object().keys({
-    foo: V.string(),
-  });
-  expect(
-    getValidateResult(
-      {
-        foo: 1,
-      },
-      schema
-    )
-  ).toMatchInlineSnapshot(`
+describe('keys', () => {
+  it('should return an error if key validation failed', () => {
+    const schema = V.object().keys({
+      foo: V.string(),
+    });
+    expect(
+      getValidateResult(
+        {
+          foo: 1,
+        },
+        schema
+      )
+    ).toMatchInlineSnapshot(`
 Object {
   "errors": Array [
     Object {
@@ -96,17 +99,17 @@ Object {
   },
 }
 `);
-});
-
-it('should return a new copy of object if child has a new value', () => {
-  const schema = V.object().keys({
-    foo: V.string().trim(),
   });
-  const value = {
-    foo: ' a ',
-  };
-  const result = getValidateResult(value, schema);
-  expect(result).toMatchInlineSnapshot(`
+
+  it('should return a new copy of object if child has a new value', () => {
+    const schema = V.object().keys({
+      foo: V.string().trim(),
+    });
+    const value = {
+      foo: ' a ',
+    };
+    const result = getValidateResult(value, schema);
+    expect(result).toMatchInlineSnapshot(`
 Object {
   "errors": Array [],
   "value": Object {
@@ -114,18 +117,18 @@ Object {
   },
 }
 `);
-  expect(result.value).not.toBe(value);
-});
-
-it('should not return a new copy of object if child is not changed', () => {
-  const schema = V.object().keys({
-    foo: V.string().trim(),
+    expect(result.value).not.toBe(value);
   });
-  const value = {
-    foo: 'a',
-  };
-  const result = getValidateResult(value, schema);
-  expect(result).toMatchInlineSnapshot(`
+
+  it('should not return a new copy of object if child is not changed', () => {
+    const schema = V.object().keys({
+      foo: V.string().trim(),
+    });
+    const value = {
+      foo: 'a',
+    };
+    const result = getValidateResult(value, schema);
+    expect(result).toMatchInlineSnapshot(`
 Object {
   "errors": Array [],
   "value": Object {
@@ -133,5 +136,77 @@ Object {
   },
 }
 `);
-  expect(result.value).toBe(value);
+    expect(result.value).toBe(value);
+  });
+
+  it('should not return an error if valid values', () => {
+    const schema = V.object().keys({
+      foo: V.string(),
+      foo2: V.string().trim(),
+    });
+    expect(
+      getValidateResult(
+        {
+          foo: 'str',
+          foo2: 'str2 ',
+        },
+        schema
+      )
+    ).toMatchInlineSnapshot(`
+Object {
+  "errors": Array [],
+  "value": Object {
+    "foo": "str",
+    "foo2": "str2",
+  },
+}
+`);
+  });
+
+  it('should allow unknown props if unknown called', () => {
+    const schema = V.object()
+      .keys({
+        foo: V.string(),
+      })
+      .unknown();
+    expect(
+      getValidateResult(
+        {
+          foo: 'str',
+          foo2: 'str2 ',
+        },
+        schema
+      )
+    ).toMatchInlineSnapshot(`
+Object {
+  "errors": Array [],
+  "value": Object {
+    "foo": "str",
+    "foo2": "str2 ",
+  },
+}
+`);
+  });
+});
+
+describe('optional/null', () => {
+  it('should return no errors if optional', () => {
+    const schema = V.object().optional();
+    expect(getValidateResult(undefined, schema)).toMatchInlineSnapshot(`
+Object {
+  "errors": Array [],
+  "value": undefined,
+}
+`);
+  });
+
+  it('should return no errors if nullable', () => {
+    const schema = V.object().nullable();
+    expect(getValidateResult(null, schema)).toMatchInlineSnapshot(`
+Object {
+  "errors": Array [],
+  "value": null,
+}
+`);
+  });
 });

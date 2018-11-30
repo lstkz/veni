@@ -8,7 +8,7 @@ export class AnySchema<TReq = true, TNull = false> {
       priority: -1,
       type: 'any.required',
       validate: (value, path) => {
-        if (value === undefined) {
+        if (value == null) {
           return {
             stop: true,
             error: {
@@ -39,7 +39,6 @@ export class AnySchema<TReq = true, TNull = false> {
     });
     return (this as any) as AnySchema<false, TNull>;
   }
-
 
   nullable() {
     this.validators.push({

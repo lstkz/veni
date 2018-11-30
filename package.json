@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "jest": "jest"
+    "jest": "jest",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",

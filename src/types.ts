@@ -6,7 +6,7 @@ export interface ErrorDetails {
   message: string;
   path: string[];
   type: string;
-  value: string;
+  value: any;
 }
 
 type Validate = (

@@ -3,6 +3,9 @@ import { AnySchema } from './AnySchema';
 import { ObjectSchema } from './ObjectSchema';
 import { ArraySchema } from './ArraySchema';
 import { EnumSchema } from './EnumSchema';
+import { NumberSchema } from './NumberSchema';
+import { BooleanSchema } from './BooleanSchema';
+import { DateSchema } from './DateSchema';
 
 export const V = {
   any: () => new AnySchema(),
@@ -10,6 +13,9 @@ export const V = {
   object: () => new ObjectSchema(),
   array: () => new ArraySchema(),
   enum: () => new EnumSchema(),
+  number: () => new NumberSchema(),
+  boolean: () => new BooleanSchema(),
+  date: () => new DateSchema(),
 };
 
 export * from './validate';
