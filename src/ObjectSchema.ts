@@ -8,7 +8,7 @@ export class ObjectSchema<
   TKeys = {}
 > extends AnySchema<TReq, TNull> {
   schema = 'object';
-  private _keys: SchemaMap = {};
+  private _keys: SchemaMap | null = null;
   private _allowUnknown: boolean = false;
 
   constructor() {
@@ -38,6 +38,9 @@ export class ObjectSchema<
     this.validators.push({
       type: 'object.keys',
       validate: (value: any, path) => {
+        if (!this._keys) {
+          return null;
+        }
         const errors: ErrorDetails[] = [];
         let newValue: any;
         let isNewValueCloned = false;
@@ -46,7 +49,7 @@ export class ObjectSchema<
           ...value,
         }).forEach(key => {
           const propValue = value[key];
-          const propSchema = this._keys[key];
+          const propSchema = this._keys![key];
           const propPath = [...path, key];
           if (!propSchema) {
             if (this._allowUnknown) {
@@ -60,7 +63,11 @@ export class ObjectSchema<
             });
             return;
           }
-          const result = getValidateResult(propValue, propSchema, propPath);
+          const result = getValidateResult(
+            propValue,
+            propSchema as any,
+            propPath
+          );
           errors.push(...result.errors);
           if (result.value !== propValue) {
             if (!isNewValueCloned) {

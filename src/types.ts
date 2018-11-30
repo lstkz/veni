@@ -2,16 +2,18 @@ import { AnySchema } from './AnySchema';
 import { StringSchema } from './StringSchema';
 import { ObjectSchema } from './ObjectSchema';
 
+export type Path = Array<string | number>;
+
 export interface ErrorDetails {
   message: string;
-  path: string[];
+  path: Path;
   type: string;
   value: any;
 }
 
 type Validate = (
   value: any,
-  path: string[]
+  path: Path
 ) => {
   error?: ErrorDetails;
   errors?: ErrorDetails[];
@@ -37,13 +39,12 @@ export type Schema =
   | StringSchema;
 
 export type SchemaLike =
-  | string
-  | number
-  | boolean
-  | object
-  | null
-  | Schema
-  | SchemaMap;
+  // | string
+  // | number
+  // | boolean
+  // | object
+  // | null
+  Schema | SchemaMap;
 
 export interface SchemaMap {
   [key: string]: SchemaLike | SchemaLike[];

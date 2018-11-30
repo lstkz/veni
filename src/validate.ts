@@ -1,11 +1,11 @@
 import { AnySchema } from './AnySchema';
-import { Validator, ErrorDetails } from './types';
+import { Validator, ErrorDetails, Path } from './types';
 import { ValidationError } from './ValidationError';
 
 export const getValidateResult = (
   value: any,
   schema: AnySchema,
-  path: string[] = []
+  path: Path = []
 ) => {
   const validators: Validator[] = [...(schema as any).validators];
   validators.sort((a, b) => (a.priority || 0) - (b.priority || 0));

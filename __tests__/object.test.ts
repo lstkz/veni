@@ -41,29 +41,13 @@ Object {
 `);
   });
 
-  it('should return an error if key is not allowed', () => {
+  it('should return no error if keys not defined and there are unknown props', () => {
     const schema = V.object();
-    expect(
-      getValidateResult(
-        {
-          foo: 1,
-        },
-        schema
-      )
-    ).toMatchInlineSnapshot(`
+    expect(getValidateResult({ a: 1 }, schema)).toMatchInlineSnapshot(`
 Object {
-  "errors": Array [
-    Object {
-      "message": "is not allowed",
-      "path": Array [
-        "foo",
-      ],
-      "type": "object.allowUnknown",
-      "value": 1,
-    },
-  ],
+  "errors": Array [],
   "value": Object {
-    "foo": 1,
+    "a": 1,
   },
 }
 `);

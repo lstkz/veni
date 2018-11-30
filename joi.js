@@ -10,9 +10,24 @@ const schema = Joi.object({
   //   .max(5)
   //   .allow(null),
   username: 1,
+  arr: Joi.array().items(
+    Joi.object().keys({
+      a: Joi.string(),
+    })
+  ),
 });
 
-const ret = Joi.validate({ username2: 2 }, schema).error;
+const ret = Joi.validate(
+  {
+    username2: 2,
+    arr: [
+      {
+        a: 1,
+      },
+    ],
+  },
+  schema
+).error;
 
 if (ret) {
   console.log(ret.details);

@@ -1,17 +1,73 @@
 import { AnySchema } from './AnySchema';
-import { SchemaLike } from './types';
+import { SchemaLike, ErrorDetails } from './types';
+import { getValidateResult } from './validate';
+import { schemaLikeToSchema } from './utils';
 
 export class ArraySchema<
   TReq = true,
   TNull = false,
-  TItem = any
+  TItem extends SchemaLike = any
 > extends AnySchema<TReq, TNull> {
   readonly schema = 'array';
-  private _typeSchema: TItem = null;
+  private _typeSchema: SchemaLike | null = null;
+
+  constructor() {
+    super();
+    this.validators.push({
+      type: 'array.base',
+      validate: (value, path) => {
+        if (!Array.isArray(value)) {
+          return {
+            stop: true,
+            error: {
+              type: 'array.base',
+              message: 'must be an array',
+              path,
+              value,
+            },
+          };
+        }
+        return null;
+      },
+    });
+
+    this.validators.push({
+      type: 'array.items',
+      validate: (value: any[], path) => {
+        if (!this._typeSchema) {
+          return null;
+        }
+        const errors: ErrorDetails[] = [];
+        let isModified = false;
+        const newValue = value.map((item, i) => {
+          const result = getValidateResult(
+            item,
+            schemaLikeToSchema(this._typeSchema!),
+            [...path, i]
+          );
+          errors.push(...result.errors);
+          if (result.value !== item) {
+            isModified = true;
+          }
+          return result.value;
+        });
+        if (errors.length) {
+          return {
+            stop: true,
+            errors,
+          };
+        }
+        if (isModified) {
+          return { value: newValue };
+        }
+        return null;
+      },
+    });
+  }
 
   items<T extends SchemaLike>(typeSchema: T) {
     this._typeSchema = typeSchema;
-    return (this as any) as ArraySchema<TReq, T>;
+    return (this as any) as ArraySchema<TReq, TNull, T>;
   }
 
   optional() {
