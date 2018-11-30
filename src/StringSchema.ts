@@ -1,6 +1,9 @@
 import { AnySchema } from './AnySchema';
 
-export class StringSchema<TReq = true> extends AnySchema<TReq> {
+export class StringSchema<TReq = true, TNull = false> extends AnySchema<
+  TReq,
+  TNull
+> {
   readonly schema = 'string';
 
   constructor() {
@@ -86,6 +89,10 @@ export class StringSchema<TReq = true> extends AnySchema<TReq> {
   }
 
   optional() {
-    return (super.optional() as any) as StringSchema<false>;
+    return (super.optional() as any) as StringSchema<false, TNull>;
+  }
+
+  nullable() {
+    return (super.nullable() as any) as StringSchema<TReq, false>;
   }
 }

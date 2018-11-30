@@ -2,10 +2,14 @@ import { AnySchema } from './AnySchema';
 import { SchemaMap, ErrorDetails } from './types';
 import { getValidateResult } from './validate';
 
-export class ObjectSchema<TReq = true, TKeys = {}> extends AnySchema<TReq> {
+export class ObjectSchema<
+  TReq = true,
+  TNull = false,
+  TKeys = {}
+> extends AnySchema<TReq, TNull> {
   schema = 'object';
   private _keys: SchemaMap = {};
-  private _allowUnknown: true;
+  private _allowUnknown: boolean = false;
 
   constructor() {
     super();

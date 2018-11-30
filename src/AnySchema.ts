@@ -1,6 +1,6 @@
 import { Validator } from './types';
 
-export class AnySchema<TReq = true> {
+export class AnySchema<TReq = true, TNull = false> {
   protected validators: Validator[] = [];
 
   constructor() {
@@ -37,8 +37,9 @@ export class AnySchema<TReq = true> {
         return null;
       },
     });
-    return (this as any) as AnySchema<false>;
+    return (this as any) as AnySchema<false, TNull>;
   }
+
 
   nullable() {
     this.validators.push({
@@ -53,6 +54,6 @@ export class AnySchema<TReq = true> {
         return null;
       },
     });
-    return (this as any) as AnySchema<false>;
+    return (this as any) as AnySchema<TReq, false>;
   }
 }
