@@ -52,7 +52,7 @@ Object {
 });
 
 describe('min', () => {
-  it('should return an error if length less than min', () => {
+  it('should return an error if length lesser than min', () => {
     const schema = V.string().min(3);
     expect(getValidateResult('1', schema)).toMatchInlineSnapshot(`
 Object {
@@ -69,7 +69,7 @@ Object {
 `);
   });
 
-  it('should not return an error if valid equal length ', () => {
+  it('should not return an error if length equal to min ', () => {
     const schema = V.string().min(3);
     expect(getValidateResult('123', schema)).toMatchInlineSnapshot(`
 Object {
@@ -79,7 +79,7 @@ Object {
 `);
   });
 
-  it('should not return an error if valid greater length ', () => {
+  it('should not return an error if length greater than min ', () => {
     const schema = V.string().min(3);
     expect(getValidateResult('1234', schema)).toMatchInlineSnapshot(`
 Object {
@@ -108,8 +108,8 @@ Object {
 `);
   });
 
-  it('should not return an error if valid equal length ', () => {
-    const schema = V.string().min(3);
+  it('should not return an error if length equal to max ', () => {
+    const schema = V.string().max(3);
     expect(getValidateResult('123', schema)).toMatchInlineSnapshot(`
 Object {
   "errors": Array [],
@@ -118,18 +118,11 @@ Object {
 `);
   });
 
-  it('should not return an error if valid lesser length ', () => {
-    const schema = V.string().min(3);
+  it('should not return an error if length lesser then max ', () => {
+    const schema = V.string().max(3);
     expect(getValidateResult('12', schema)).toMatchInlineSnapshot(`
 Object {
-  "errors": Array [
-    Object {
-      "message": "length must be at least 3 characters long",
-      "path": Array [],
-      "type": "string.base",
-      "value": "12",
-    },
-  ],
+  "errors": Array [],
   "value": "12",
 }
 `);

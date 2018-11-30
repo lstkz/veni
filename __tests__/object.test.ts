@@ -171,6 +171,38 @@ Object {
 }
 `);
   });
+
+  it('should return an error if prop is unknown', () => {
+    const schema = V.object().keys({
+      foo: V.string(),
+    });
+    expect(
+      getValidateResult(
+        {
+          foo: 'str',
+          foo2: 'str2 ',
+        },
+        schema
+      )
+    ).toMatchInlineSnapshot(`
+Object {
+  "errors": Array [
+    Object {
+      "message": "is not allowed",
+      "path": Array [
+        "foo2",
+      ],
+      "type": "object.allowUnknown",
+      "value": "str2 ",
+    },
+  ],
+  "value": Object {
+    "foo": "str",
+    "foo2": "str2 ",
+  },
+}
+`);
+  });
 });
 
 describe('optional/null', () => {
