@@ -16,6 +16,12 @@ yarn add veni
 ```typescript
 import { V, validate } from 'veni';
 
+enum Gender {
+  Male = 'Male',
+  Female = 'Female',
+  gender: V.enum().values<Gender>(Object.values(Gender)),
+}
+
 const schema = V.object().keys({
   username: V.string()
     .min(3)
@@ -34,6 +40,7 @@ const data = {
   password: 'password',
   birthyear: '2000',
   email: 'john@example.com',
+  gender: 'male'
 };
 
 const user = validate(data, schema, 'user');

@@ -6,7 +6,7 @@ import { schemaLikeToSchema } from './utils';
 export class ArraySchema<
   TReq = true,
   TNull = false,
-  TItem extends SchemaLike = any
+  TItem = any
 > extends AnySchema<TReq, TNull> {
   readonly schema = 'array';
   private _typeSchema: SchemaLike | null = null;
