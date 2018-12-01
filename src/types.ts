@@ -1,6 +1,10 @@
 import { AnySchema } from './AnySchema';
 import { StringSchema } from './StringSchema';
 import { ObjectSchema } from './ObjectSchema';
+import { ArraySchema } from './ArraySchema';
+import { BooleanSchema } from './BooleanSchema';
+import { NumberSchema } from './NumberSchema';
+import { DateSchema } from './DateSchema';
 
 export type Path = Array<string | number>;
 
@@ -29,12 +33,12 @@ export interface Validator {
 
 export type Schema =
   | AnySchema
-  // | ArraySchema
+  | ArraySchema
   // | BinarySchema
-  // | BooleanSchema
-  // | DateSchema
+  | BooleanSchema
+  | DateSchema
   // | FunctionSchema
-  // | NumberSchema
+  | NumberSchema
   | ObjectSchema
   | StringSchema;
 

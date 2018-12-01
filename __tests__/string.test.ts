@@ -158,3 +158,62 @@ Object {
 `);
   });
 });
+
+describe('regex', () => {
+  it('should return no errors if valid', () => {
+    const schema = V.string().regex(/^[a-z]+$/);
+    expect(getValidateResult('abc', schema)).toMatchInlineSnapshot(`
+Object {
+  "errors": Array [],
+  "value": "abc",
+}
+`);
+  });
+
+  it('should return an error if invalid', () => {
+    const schema = V.string().regex(/^[a-z]+$/);
+    expect(getValidateResult('abcZ', schema)).toMatchInlineSnapshot(`
+Object {
+  "errors": Array [
+    Object {
+      "message": "must match regex /^[a-z]+$/",
+      "path": Array [],
+      "type": "string.regex",
+      "value": "abcZ",
+    },
+  ],
+  "value": "abcZ",
+}
+`);
+  });
+});
+
+describe('email', () => {
+  it('should return no errors if valid', () => {
+    const schema = V.string().email();
+    expect(getValidateResult('aa+a@example.com', schema))
+      .toMatchInlineSnapshot(`
+Object {
+  "errors": Array [],
+  "value": "aa+a@example.com",
+}
+`);
+  });
+
+  it('should return an error if invalid', () => {
+    const schema = V.string().email();
+    expect(getValidateResult('avc', schema)).toMatchInlineSnapshot(`
+Object {
+  "errors": Array [
+    Object {
+      "message": "must a valid email",
+      "path": Array [],
+      "type": "string.email",
+      "value": "avc",
+    },
+  ],
+  "value": "avc",
+}
+`);
+  });
+});

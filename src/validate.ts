@@ -1,6 +1,7 @@
 import { AnySchema } from './AnySchema';
 import { Validator, ErrorDetails, Path } from './types';
 import { ValidationError } from './ValidationError';
+import { formatErrors } from './utils';
 
 export const getValidateResult = (
   value: any,
@@ -36,10 +37,17 @@ export const getValidateResult = (
   return ret;
 };
 
-export const validate = (value: any, schema: AnySchema) => {
-  const { value: newValue, errors } = getValidateResult(value, schema, []);
+export const validate = (value: any, schema: AnySchema, rootName?: string) => {
+  const { value: newValue, errors } = getValidateResult(
+    value,
+    schema,
+    rootName ? [rootName] : []
+  );
   if (errors.length) {
-    const error = new ValidationError('Validation error', errors);
+    const error = new ValidationError(
+      'Validation error: ' + formatErrors(errors),
+      errors
+    );
     throw error;
   }
   return newValue;

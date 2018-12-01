@@ -1,5 +1,7 @@
 import { AnySchema } from './AnySchema';
 
+const emailReg = /^[a-zA-Z0-9._\-+]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
 export class StringSchema<TReq = true, TNull = false> extends AnySchema<
   TReq,
   TNull
@@ -80,6 +82,48 @@ export class StringSchema<TReq = true, TNull = false> extends AnySchema<
         if (trimmed !== value) {
           return {
             value: trimmed,
+          };
+        }
+        return null;
+      },
+    });
+    return this;
+  }
+
+  regex(reg: RegExp) {
+    this.validators.push({
+      type: 'string.regex',
+      validate: (value: string, path) => {
+        if (!reg.test(value)) {
+          return {
+            stop: true,
+            error: {
+              type: 'string.regex',
+              message: `must match regex ${reg}`,
+              path,
+              value,
+            },
+          };
+        }
+        return null;
+      },
+    });
+    return this;
+  }
+
+  email() {
+    this.validators.push({
+      type: 'string.email',
+      validate: (value: string, path) => {
+        if (!emailReg.test(value)) {
+          return {
+            stop: true,
+            error: {
+              type: 'string.email',
+              message: `must a valid email`,
+              path,
+              value,
+            },
           };
         }
         return null;
