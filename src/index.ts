@@ -29,6 +29,7 @@ export {
   DateSchema,
 };
 
+export { Convert } from './convert-types';
 export * from './types';
 export * from './validate';
 export * from './ValidationError';
