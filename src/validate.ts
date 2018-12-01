@@ -2,6 +2,7 @@ import { AnySchema } from './AnySchema';
 import { Validator, ErrorDetails, Path } from './types';
 import { ValidationError } from './ValidationError';
 import { formatErrors } from './utils';
+import { Convert } from './convert-types';
 
 export const getValidateResult = (
   value: any,
@@ -37,7 +38,11 @@ export const getValidateResult = (
   return ret;
 };
 
-export const validate = (value: any, schema: AnySchema, rootName?: string) => {
+export const validate = <T extends AnySchema>(
+  value: any,
+  schema: T,
+  rootName?: string
+): Convert<T> => {
   const { value: newValue, errors } = getValidateResult(
     value,
     schema,
