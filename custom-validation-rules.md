@@ -1,11 +1,10 @@
-# Custom Validation Rules
+# Custom Validation rules
 
-It's possible to add custom validation rules by patching the prototype of schemas.  
+It's possible to add custom validation rules by patching the prototype of schemas.
 
+## `custom-rules.ts`
 
-### `custom-rules.ts`
-
-```ts
+```typescript
 import { NumberSchema, V } from 'veni';
 
 declare module 'veni' {
@@ -64,16 +63,14 @@ NumberSchema.prototype.cap = function(max: number) {
   });
   return this;
 };
-
-
 ```
 
+## `your-app.ts`
 
-### `your-app.ts`
 Sample usage.  
 New rules should available in autocomplete.
 
-```ts
+```typescript
 import './custom-rules.ts'
 import { V } from '../src/index';
 
@@ -82,15 +79,13 @@ const schema = V.object().keys({
   maxRetries: V.number().cap(100),
   url: V.string();
 })
-
 ```
 
-### Validator
+## Validator
+
 Validator has the following format
 
-
-```ts
-
+```typescript
 NumberSchema.prototype.myCustomFun = function() { 
 
   // Add a custom validation rules.
@@ -146,6 +141,5 @@ NumberSchema.prototype.myCustomFun = function() {
   });
   return this;
 };
-
-
 ```
+

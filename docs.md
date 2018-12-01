@@ -30,8 +30,8 @@ A validated object.
 
 A `ValidationError` is throws if validation failed.
 
-
 ## `getValidateResult(value, schema, [path])`
+
 Validate a value using the given schema, and get result as an object.
 
 ### Arguments
@@ -43,67 +43,81 @@ Validate a value using the given schema, and get result as an object.
 #### Returns
 
 An object with the following props:
+
 * `value` The new value after validation.
 * `errors` The list of validation errors. If the validation was successful an array will be empty.
-
 
 ## V
 
 ## any
+
 Matches any object. By default it's required, and non nullable.
 
-### any.optional()
+### any.optional\(\)
+
 Marks a key as optional. `undefined` value is allowed.
 
-### any.nullable()
+### any.nullable\(\)
+
 Marks a key as required. `null` value is allowed.
 
-
 ## string
+
 Matches a string.
 
-### string.min(min: number)
+### string.min\(min: number\)
+
 Specifies the minimum number of characters.
 
-### string.max(max: number)
+### string.max\(max: number\)
+
 Specifies the maximum number of characters.
 
-### string.trim()
+### string.trim\(\)
+
 Trims the output value.
 
-### string.regex(reg: RegExp)
+### string.regex\(reg: RegExp\)
+
 Defines a regular expression.
 
-### string.email()
+### string.email\(\)
+
 Requires the string value to be a valid email address.  
 The Following regexp is used `/^[a-zA-Z0-9._\-+]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/`
 
-
 ## object
+
 Matches an object.  
 If `keys` are not set then any object is allowed.
 
-### object.keys(schema: SchemaMap)
+### object.keys\(schema: SchemaMap\)
+
 Defines a schema for each property.
 
-### string.unknown()
+### string.unknown\(\)
+
 Allows unknown keys.
 
 ## array
-Matches an array.   
 
-### array.items(typeSchema)
+Matches an array.
+
+### array.items\(typeSchema\)
+
 Defines the schema of the array element.
 
 ### enum
-Matches predefined list of values.  Values are case insensitive.
 
-### enum.values(values)
+Matches predefined list of values. Values are case insensitive.
+
+### enum.values\(values\)
+
 Defines the required enum value.
 
 Example:
-```ts
 
+```typescript
 enum Gender {
   Male = 'Male',
   Female = 'Female',
@@ -112,36 +126,41 @@ enum Gender {
 const schema = V.object().keys({
   gender: V.enum().values<Gender>(Object.values(Gender)),
 });
-
 ```
 
-### enum.literal(...values)
+### enum.literal\(...values\)
+
 Defines allowed literal values.
 
 Example:
-```ts
 
+```typescript
 const schema = V.object().keys({
   gender: V.enum().literal('male', 'female'),
 });
-
 ```
 
 ## number
+
 Matches a number. Valid string numbers are casted to a number type.
 
-### number.integer()
-Requires the number to be an integer (no floating point).
+### number.integer\(\)
 
-### number.min(min: number)
+Requires the number to be an integer \(no floating point\).
+
+### number.min\(min: number\)
+
 Specifies the minimum allowed number.
 
+### number.max\(max: number\)
 
-### number.max(max: number)
 Specifies the maximum allowed number.
 
 ## boolean
+
 Matches a boolean. Strings `'true'` and `'false'` are casted to a boolean type.
 
 ## date
+
 Matches a date. Valid iso strings e.g. `"2018-12-01T14:08:26.061Z"` are converted to a date object. Invalid dates are not allowed e.g. `new Date('')`.
+
