@@ -1,7 +1,7 @@
 Veni
 =============
 
-Painless validation for TypeScript 🧘‍♀️   
+Painless validation for TypeScript 🧘‍♀️🧘‍♂️   
 
 
 [![Build Status](https://travis-ci.org/BetterCallSky/veni.svg?branch=master)](https://travis-ci.org/BetterCallSky/veni)
@@ -13,7 +13,9 @@ Installation
 npm i veni
 yarn add veni
 ```
-Then in .js or .ts
+
+Usage
+----------
 
 ```ts
 import { V, validate } from 'veni';
@@ -45,3 +47,19 @@ const user = validate(data, schema, 'user');
 
 ![alt autocomplete](./docs/img/autocomplete.gif)  
 
+API Reference
+----------
+Check API reference (here)[https://veni.gitbook.io]
+
+
+Features
+----------
+- Written and compatible with TypeScript in 100%.
+- API is highly inspired on (joi)[https://github.com/hapijs/joi], but simplified.
+- Types are automatically inferred based on schema. Solves "double annotation" problem.
+- No dependencies.
+- Minimal bundle size.
+- Easy to extend.
+
+
+MIT

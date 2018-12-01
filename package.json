@@ -2,7 +2,9 @@
   "name": "veni",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/es/index.js",
+  "jsnext:main": "dist/es/index.js",
   "scripts": {
     "jest": "jest",
     "tsc": "tsc",
