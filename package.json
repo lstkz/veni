@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "jest": "jest",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "test": "yarn run tsc --noEmit && yarn run jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -23,8 +24,5 @@
     "prettier": "^1.14.3",
     "ts-jest": "^23.10.4",
     "typescript": "^3.1.6"
-  },
-  "dependencies": {
-    "joi": "^14.0.4"
   }
 }
