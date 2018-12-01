@@ -49,17 +49,17 @@ const user = validate(data, schema, 'user');
 
 API Reference
 ----------
-Check API reference (here)[https://veni.gitbook.io]
+Check API reference [here](https://veni.gitbook.io)
 
 
 Features
 ----------
 - Written and compatible with TypeScript in 100%.
-- API is highly inspired on (joi)[https://github.com/hapijs/joi], but simplified.
+- API is highly inspired on [joi](https://github.com/hapijs/joi), but simplified.
 - Types are automatically inferred based on schema. Solves "double annotation" problem.
 - No dependencies.
 - Minimal bundle size.
-- Easy to extend.
+- Very easy to extend, and add custom validation rules.
 
 
 MIT
