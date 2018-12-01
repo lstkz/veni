@@ -11,6 +11,7 @@ import { NumberSchema, V } from 'veni';
 declare module 'veni' {
   interface NumberSchema {
     port(): this;
+    cap(max: number): this;
   }
 }
 
@@ -69,6 +70,8 @@ NumberSchema.prototype.cap = function(max: number) {
 
 
 ### `your-app.ts`
+Sample usage.  
+New rules should available in autocomplete.
 
 ```ts
 import './custom-rules.ts'
@@ -76,6 +79,7 @@ import { V } from '../src/index';
 
 const schema = V.object().keys({
   port: V.number().port(),
+  maxRetries: V.number().cap(100),
   url: V.string();
 })
 
