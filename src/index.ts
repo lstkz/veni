@@ -18,5 +18,16 @@ export const V = {
   date: () => new DateSchema(),
 };
 
+export {
+  StringSchema,
+  AnySchema,
+  ObjectSchema,
+  ArraySchema,
+  EnumSchema,
+  NumberSchema,
+  BooleanSchema,
+  DateSchema,
+};
+
 export * from './validate';
 export * from './validationError';

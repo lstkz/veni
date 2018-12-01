@@ -1,7 +1,7 @@
 import { Validator } from './types';
 
 export class AnySchema<TReq = true, TNull = false> {
-  protected validators: Validator[] = [];
+  validators: Validator[] = [];
 
   constructor() {
     this.validators.push({
