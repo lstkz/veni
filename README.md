@@ -61,7 +61,7 @@ Check API reference [here](https://veni.gitbook.io)
 * Types are automatically inferred based on schema. Solves "double annotation" problem.
 * No dependencies.
 * Minimal bundle size.
-* Very easy to extend, and add custom validation rules.
+* Very easy to extend, and add custom validation rules. Check [here](./custom-validation-rules.md).
 
 MIT
 
