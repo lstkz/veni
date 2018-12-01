@@ -41,7 +41,7 @@ const data = {
 const user = validate(data, schema, 'user');
 
 ```
-Properties are inferred automatically.
+‼️ Properties are inferred automatically.
 
 ![alt autocomplete](./docs/img/autocomplete.gif)  
 
