@@ -30,4 +30,4 @@ export {
 };
 
 export * from './validate';
-export * from './validationError';
+export * from './ValidationError';
