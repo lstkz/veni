@@ -5,6 +5,7 @@
   "main": "dist/commonjs/index.js",
   "module": "dist/es/index.js",
   "jsnext:main": "dist/es/index.js",
+  "types": "dist/es/index.d.ts",
   "scripts": {
     "jest": "jest",
     "tsc": "tsc",
