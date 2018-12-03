@@ -2,7 +2,7 @@
 
 Painless validation for TypeScript 🧘‍♀️🧘‍♂️
 
-[![Build Status](https://travis-ci.org/BetterCallSky/veni.svg?branch=master)](https://travis-ci.org/BetterCallSky/veni) [![npm module](https://badge.fury.io/js/veni.svg)](https://www.npmjs.org/package/veni)
+[![Build Status](https://travis-ci.org/BetterCallSky/veni.svg?branch=master)](https://travis-ci.org/BetterCallSky/veni) [![npm module](https://badge.fury.io/js/veni.svg)](https://www.npmjs.org/package/veni) [![Greenkeeper badge](https://badges.greenkeeper.io/BetterCallSky/veni.svg)](https://greenkeeper.io/)
 
 ## Installation
 
