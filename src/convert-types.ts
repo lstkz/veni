@@ -5,6 +5,7 @@ import { DateSchema } from './DateSchema';
 import { EnumSchema } from './EnumSchema';
 import { ArraySchema } from './ArraySchema';
 import { ObjectSchema } from './ObjectSchema';
+import { OrSchema } from './OrSchema';
 
 export type Pick<T, K extends keyof T> = { [P in K]: T[P] };
 
@@ -62,7 +63,9 @@ export type ConvertType<T> = T extends PrimitiveSchema
       >
     : T extends ObjectSchema<infer TReq, infer TNull, infer K>
       ? CheckREQ<TReq, TNull, ExtractObject2<K>>
-      : T;
+      : T extends OrSchema<infer TReq, infer TNull, infer K>
+        ? CheckREQ<TReq, TNull, K>
+        : T;
 
 export type ExtractObject2<T> = ConvertObject<
   { [K in keyof T]: ConvertType2<T[K]> }
@@ -82,7 +85,9 @@ export type ConvertType2<T> = T extends PrimitiveSchema
       >
     : T extends ObjectSchema<infer TReq, infer TNull, infer K>
       ? CheckREQ<TReq, TNull, ExtractObject3<K>>
-      : T;
+      : T extends OrSchema<infer TReq, infer TNull, infer K>
+        ? CheckREQ<TReq, TNull, K>
+        : T;
 
 export type ExtractObject3<T> = { [K in keyof T]: ConvertType3<T[K]> };
 
@@ -100,7 +105,9 @@ export type ConvertType3<T> = T extends PrimitiveSchema
       >
     : T extends ObjectSchema<infer TReq, infer TNull, infer K>
       ? CheckREQ<TReq, TNull, ExtractObject4<K>>
-      : T;
+      : T extends OrSchema<infer TReq, infer TNull, infer K>
+        ? CheckREQ<TReq, TNull, K>
+        : T;
 
 export type ExtractObject4<T> = { [K in keyof T]: ConvertType4<T[K]> };
 

@@ -6,6 +6,7 @@ import { EnumSchema } from './EnumSchema';
 import { NumberSchema } from './NumberSchema';
 import { BooleanSchema } from './BooleanSchema';
 import { DateSchema } from './DateSchema';
+import { OrSchema } from './OrSchema';
 
 export const V = {
   any: () => new AnySchema(),
@@ -16,6 +17,7 @@ export const V = {
   number: () => new NumberSchema(),
   boolean: () => new BooleanSchema(),
   date: () => new DateSchema(),
+  or: () => new OrSchema(),
 };
 
 export {
@@ -27,6 +29,7 @@ export {
   NumberSchema,
   BooleanSchema,
   DateSchema,
+  OrSchema,
 };
 
 export { Convert } from './convert-types';

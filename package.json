@@ -15,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/BetterCallSky/veni.git"
   },
-  "author": "",
+  "author": "Łukasz Sentkiewicz",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/BetterCallSky/veni/issues"
