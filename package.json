@@ -1,6 +1,6 @@
 {
   "name": "veni",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "",
   "main": "dist/commonjs/index.js",
   "module": "dist/es/index.js",
