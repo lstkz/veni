@@ -3,8 +3,8 @@
   "version": "0.2.5",
   "description": "",
   "main": "index.js",
-  "module": "index.js",
-  "jsnext:main": "index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
   "types": "index.d.ts",
   "scripts": {
     "jest": "jest",
