@@ -3,7 +3,9 @@
   "version": "0.2.4",
   "description": "",
   "main": "index.js",
-  "module": "es/index.js",
+  "module": "index.js",
+  "jsnext:main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "jest": "jest",
     "tsc": "tsc",
