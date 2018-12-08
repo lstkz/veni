@@ -28,8 +28,6 @@ export type PrimitiveSchema =
   | DateSchema
   | EnumSchema;
 
-export type Flatten<T> = { [K in keyof T]: T[K] };
-
 /* Auto generated */
 
 export type ExtractPrimitive<T> = T extends StringSchema<
@@ -57,12 +55,12 @@ export type ConvertType<T> = T extends PrimitiveSchema
         TNull,
         Array<
           K extends ObjectSchema<infer TReq, infer TNull, infer P>
-            ? CheckREQ<TReq, TNull, ExtractObject2<P>>
+            ? CheckREQ<TReq, TNull, P>
             : ConvertType2<K>
         >
       >
     : T extends ObjectSchema<infer TReq, infer TNull, infer K>
-      ? CheckREQ<TReq, TNull, ExtractObject2<K>>
+      ? CheckREQ<TReq, TNull, K>
       : T extends OrSchema<infer TReq, infer TNull, infer K>
         ? CheckREQ<TReq, TNull, K>
         : T;
@@ -79,12 +77,12 @@ export type ConvertType2<T> = T extends PrimitiveSchema
         TNull,
         Array<
           K extends ObjectSchema<infer TReq, infer TNull, infer P>
-            ? CheckREQ<TReq, TNull, ExtractObject3<P>>
+            ? CheckREQ<TReq, TNull, P>
             : ConvertType3<K>
         >
       >
     : T extends ObjectSchema<infer TReq, infer TNull, infer K>
-      ? CheckREQ<TReq, TNull, ExtractObject3<K>>
+      ? CheckREQ<TReq, TNull, K>
       : T extends OrSchema<infer TReq, infer TNull, infer K>
         ? CheckREQ<TReq, TNull, K>
         : T;
@@ -99,12 +97,12 @@ export type ConvertType3<T> = T extends PrimitiveSchema
         TNull,
         Array<
           K extends ObjectSchema<infer TReq, infer TNull, infer P>
-            ? CheckREQ<TReq, TNull, ExtractObject4<P>>
+            ? CheckREQ<TReq, TNull, P>
             : ConvertType4<K>
         >
       >
     : T extends ObjectSchema<infer TReq, infer TNull, infer K>
-      ? CheckREQ<TReq, TNull, ExtractObject4<K>>
+      ? CheckREQ<TReq, TNull, K>
       : T extends OrSchema<infer TReq, infer TNull, infer K>
         ? CheckREQ<TReq, TNull, K>
         : T;
@@ -136,12 +134,5 @@ export type RequiredProps<T> = { [P in RequiredPropNames<T>]: T[P] };
 
 export type MakeOptional<T> = { [P in keyof T]?: T[P] };
 
-export type ConvertObject<T> = Flatten<
-  MakeOptional<OptionalProps<T>> & RequiredProps<T>
->;
-
-export type DeepConvertObject<T> = T extends Array<any>
-  ? T
-  : ConvertObject<{ [P in keyof T]: DeepConvert<T[P]> }>;
-
-export type DeepConvert<T> = T extends object ? DeepConvertObject<T> : T;
+export type ConvertObject<T> = { [P in RequiredPropNames<T>]: T[P] } &
+  { [P in OptionalPropNames<T>]?: T[P] };

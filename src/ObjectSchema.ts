@@ -1,6 +1,7 @@
 import { AnySchema } from './AnySchema';
 import { SchemaMap, ErrorDetails } from './types';
 import { getValidateResult } from './validate';
+import { ExtractObject, ConvertObject } from './convert-types';
 
 export class ObjectSchema<
   TReq = true,
@@ -95,7 +96,11 @@ export class ObjectSchema<
 
   keys<K extends SchemaMap>(schema: K) {
     this._keys = schema;
-    return (this as any) as ObjectSchema<TReq, TNull, typeof schema>;
+    return (this as any) as ObjectSchema<
+      TReq,
+      TNull,
+      ConvertObject<ExtractObject<typeof schema>>
+    >;
   }
 
   unknown() {
