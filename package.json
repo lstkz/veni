@@ -2,8 +2,8 @@
   "name": "veni",
   "version": "0.2.3",
   "description": "",
-  "main": "commonjs/index.js",
-  "module": "index.js",
+  "main": "index.js",
+  "module": "es/index.js",
   "scripts": {
     "jest": "jest",
     "tsc": "tsc",
