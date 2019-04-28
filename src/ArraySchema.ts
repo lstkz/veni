@@ -75,6 +75,6 @@ export class ArraySchema<
   }
 
   nullable() {
-    return (super.nullable() as any) as ArraySchema<TReq, false, TItem>;
+    return (super.nullable() as any) as ArraySchema<TReq, true, TItem>;
   }
 }

@@ -105,6 +105,6 @@ export class NumberSchema<TReq = true, TNull = false> extends AnySchema<
   }
 
   nullable() {
-    return (super.nullable() as any) as NumberSchema<TReq, false>;
+    return (super.nullable() as any) as NumberSchema<TReq, true>;
   }
 }

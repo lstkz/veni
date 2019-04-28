@@ -83,6 +83,6 @@ export class OrSchema<
   }
 
   nullable() {
-    return (super.nullable() as any) as OrSchema<TReq, false, TType>;
+    return (super.nullable() as any) as OrSchema<TReq, true, TType>;
   }
 }

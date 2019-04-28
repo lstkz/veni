@@ -42,6 +42,6 @@ export class DateSchema<TReq = true, TNull = false> extends AnySchema<
   }
 
   nullable() {
-    return (super.nullable() as any) as DateSchema<TReq, false>;
+    return (super.nullable() as any) as DateSchema<TReq, true>;
   }
 }

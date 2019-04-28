@@ -39,6 +39,6 @@ export class BooleanSchema<TReq = true, TNull = false> extends AnySchema<
   }
 
   nullable() {
-    return (super.nullable() as any) as BooleanSchema<TReq, false>;
+    return (super.nullable() as any) as BooleanSchema<TReq, true>;
   }
 }

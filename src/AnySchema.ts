@@ -53,6 +53,6 @@ export class AnySchema<TReq = true, TNull = false> {
         return null;
       },
     });
-    return (this as any) as AnySchema<TReq, false>;
+    return (this as any) as AnySchema<TReq, true>;
   }
 }

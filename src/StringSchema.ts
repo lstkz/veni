@@ -137,6 +137,6 @@ export class StringSchema<TReq = true, TNull = false> extends AnySchema<
   }
 
   nullable() {
-    return (super.nullable() as any) as StringSchema<TReq, false>;
+    return (super.nullable() as any) as StringSchema<TReq, true>;
   }
 }

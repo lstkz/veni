@@ -49,7 +49,7 @@ export class EnumSchema<
   }
 
   nullable() {
-    return (super.nullable() as any) as EnumSchema<TReq, false, TType>;
+    return (super.nullable() as any) as EnumSchema<TReq, true, TType>;
   }
 
   values<T>(values: any[]) {
