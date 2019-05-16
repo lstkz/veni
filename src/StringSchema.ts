@@ -38,7 +38,7 @@ export class StringSchema<TReq = true, TNull = false> extends AnySchema<
           return {
             stop: true,
             error: {
-              type: 'string.base',
+              type: 'string.min',
               message: `length must be at least ${min} characters long`,
               path,
               value,
@@ -60,7 +60,7 @@ export class StringSchema<TReq = true, TNull = false> extends AnySchema<
           return {
             stop: true,
             error: {
-              type: 'string.base',
+              type: 'string.max',
               message: `length must be less than or equal to ${max} characters long`,
               path,
               value,
